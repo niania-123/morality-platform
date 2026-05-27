@@ -1,0 +1,159 @@
+.home-page { overflow: hidden; }
+
+/* Hero */
+.hero {
+  min-height: 480px;
+  display: flex; align-items: center;
+  padding: 60px 40px 40px;
+  position: relative;
+}
+.hero-content { flex: 1; z-index: 2; }
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(168,213,181,0.25);
+  border: 1px solid rgba(168,213,181,0.5);
+  color: #5a9a6a; border-radius: 20px;
+  padding: 5px 14px; font-size: 13px; margin-bottom: 18px;
+}
+.hero-title {
+  font-size: 44px; font-weight: 800; line-height: 1.2;
+  color: #3d3328; margin-bottom: 14px;
+}
+.hero-title .highlight {
+  background: linear-gradient(135deg, #F4A3A3, #C4ABDB);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero-desc {
+  font-size: 16px; color: #8a7a6a; line-height: 1.7;
+  margin-bottom: 30px; max-width: 480px;
+}
+.hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+.btn-outline {
+  padding: 13px 28px; border-radius: 26px; font-size: 16px;
+  font-weight: 600; transition: all .2s;
+  color: #c97b7b; border: 2px solid rgba(244,163,163,0.6);
+}
+.btn-outline:hover { background: rgba(244,163,163,0.1); }
+
+/* 浮动卡片 */
+.hero-illustration {
+  flex: 0 0 380px; height: 360px;
+  position: relative; z-index: 2;
+}
+.floating-card {
+  position: absolute;
+  background: #fff; border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+  padding: 16px 20px;
+  animation: floatCard 4s ease-in-out infinite;
+}
+.fc-1 { top: 20px; left: 20px; width: 175px; }
+.fc-2 { top: 70px; right: 10px; width: 160px; animation-delay: 1s; }
+.fc-3 { bottom: 40px; left: 50px; width: 200px; animation-delay: 2s; }
+@keyframes floatCard {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+.fc-emoji { font-size: 28px; margin-bottom: 8px; }
+.fc-title { font-size: 13px; font-weight: 700; color: #4a3f35; margin-bottom: 4px; }
+.fc-sub { font-size: 11px; color: #aaa; }
+.fc-tag {
+  display: inline-block; font-size: 10px; font-weight: 600;
+  padding: 2px 8px; border-radius: 10px; margin-top: 6px;
+}
+.tag-coral { background: rgba(244,163,163,0.2); color: #c97b7b; }
+.tag-purple { background: rgba(196,171,219,0.2); color: #8a6aad; }
+.tag-green { background: rgba(168,213,181,0.2); color: #5a9a6a; }
+
+/* 装饰圆 */
+.deco-circle { position: absolute; border-radius: 50%; opacity: 0.12; pointer-events: none; }
+.deco-circle.c1 { width: 300px; height: 300px; background: #F4A3A3; top: -80px; right: 200px; }
+.deco-circle.c2 { width: 200px; height: 200px; background: #C4ABDB; bottom: 0; right: 80px; }
+.deco-circle.c3 { width: 150px; height: 150px; background: #A8D5B5; top: 100px; left: -50px; }
+
+/* 统计栏 */
+.stats-bar {
+  margin: 0 40px 45px;
+  background: #fff; border-radius: 24px;
+  padding: 26px 36px;
+  display: flex;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+}
+.stat-item {
+  flex: 1; text-align: center;
+  border-right: 1px solid rgba(0,0,0,0.06);
+}
+.stat-item:last-child { border-right: none; }
+.stat-num { font-size: 30px; font-weight: 800; color: #c97b7b; }
+.stat-label { font-size: 12px; color: #bbb; margin-top: 4px; }
+
+/* 年级卡片 */
+.grade-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 18px;
+}
+.grade-card {
+  border-radius: 24px; padding: 26px 22px;
+  cursor: pointer; transition: transform .2s, box-shadow .2s;
+  position: relative; overflow: hidden; min-height: 150px;
+  display: flex; flex-direction: column; justify-content: space-between;
+}
+.grade-card:hover:not(.disabled) { transform: translateY(-6px); box-shadow: 0 12px 36px rgba(0,0,0,0.12); }
+.grade-card.disabled { cursor: not-allowed; }
+.grade-card.g1 { background: linear-gradient(135deg, #FFE5E5 0%, #FFD0D0 100%); }
+.grade-card.g2 { background: linear-gradient(135deg, #EDE0F7 0%, #DDD0F0 100%); }
+.grade-card.g3 { background: linear-gradient(135deg, #DDF0E5 0%, #C8E8D5 100%); opacity: 0.55; }
+.grade-card.g4 { background: linear-gradient(135deg, #FFF0D8 0%, #FFE5C0 100%); opacity: 0.55; }
+.grade-card.g5 { background: linear-gradient(135deg, #D8EBF7 0%, #C5DCF0 100%); opacity: 0.55; }
+.grade-card.g6 { background: linear-gradient(135deg, #FDE8F0 0%, #FBCFE0 100%); opacity: 0.55; }
+.grade-emoji { font-size: 34px; margin-bottom: 8px; }
+.grade-name { font-size: 17px; font-weight: 700; color: #4a3f35; }
+.grade-count { font-size: 12px; color: #8a7a6a; margin-top: 4px; }
+.grade-soon { font-size: 11px; color: #bbb; }
+.grade-badge {
+  position: absolute; top: 12px; right: 12px;
+  font-size: 10px; padding: 3px 10px; border-radius: 10px;
+  background: rgba(255,255,255,0.6); color: #7a6a5a; font-weight: 600;
+}
+.grade-badge.new { background: rgba(244,163,163,0.3); color: #c97b7b; }
+
+/* 功能亮点 */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 18px;
+}
+.feature-card {
+  background: #fff; border-radius: 20px; padding: 26px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.05);
+  transition: transform .2s, box-shadow .2s;
+  border: 1.5px solid transparent;
+}
+.feature-card:hover {
+  transform: translateY(-4px); box-shadow: 0 8px 28px rgba(0,0,0,0.1);
+  border-color: rgba(244,163,163,0.3);
+}
+.feature-icon {
+  width: 50px; height: 50px; border-radius: 16px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px; margin-bottom: 14px;
+}
+.fi-coral { background: rgba(244,163,163,0.2); }
+.fi-purple { background: rgba(196,171,219,0.2); }
+.fi-green { background: rgba(168,213,181,0.2); }
+.fi-yellow { background: rgba(245,230,200,0.4); }
+.fi-blue { background: rgba(168,210,230,0.2); }
+.feature-title { font-size: 15px; font-weight: 700; color: #3d3328; margin-bottom: 8px; }
+.feature-desc { font-size: 13px; color: #8a7a6a; line-height: 1.6; }
+
+/* 响应式 */
+@media (max-width: 768px) {
+  .hero { padding: 36px 20px 28px; flex-direction: column; }
+  .hero-illustration { display: none; }
+  .hero-title { font-size: 30px; }
+  .hero-desc { font-size: 14px; }
+  .stats-bar { margin: 0 20px 30px; padding: 18px; flex-wrap: wrap; }
+  .stat-item { min-width: 50%; border-right: none; padding: 8px 0; }
+}

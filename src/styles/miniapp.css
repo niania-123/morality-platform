@@ -1,0 +1,100 @@
+.mp-container {
+  display: flex; justify-content: center;
+  padding: 36px 40px 80px; gap: 36px; align-items: flex-start;
+}
+
+/* 手机框 */
+.phone-frame {
+  width: 310px; flex-shrink: 0;
+  background: #fff; border-radius: 38px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.18), 0 0 0 7px #e8e3dc;
+  overflow: hidden;
+}
+.phone-notch {
+  height: 26px; background: #1a1a1a;
+  display: flex; align-items: center; justify-content: center;
+}
+.phone-notch-dot { width: 56px; height: 7px; background: #333; border-radius: 4px; }
+.mp-screen {
+  height: 600px; overflow-y: auto; background: #FFFDF8;
+  -ms-overflow-style: none; scrollbar-width: none;
+}
+.mp-screen::-webkit-scrollbar { display: none; }
+.mp-header {
+  background: linear-gradient(135deg, rgba(244,163,163,0.3), rgba(196,171,219,0.3));
+  padding: 14px; text-align: center;
+}
+.mp-header-title { font-size: 16px; font-weight: 800; color: #3d3328; }
+.mp-header-sub { font-size: 11px; color: #8a7a6a; margin-top: 2px; }
+.mp-banner {
+  margin: 10px; border-radius: 16px;
+  background: linear-gradient(135deg, #F4A3A3, #C4ABDB);
+  padding: 18px 14px; color: #fff; position: relative; overflow: hidden;
+}
+.mp-banner-text { font-size: 14px; font-weight: 700; }
+.mp-banner-sub { font-size: 11px; opacity: 0.85; margin-top: 3px; }
+.mp-banner-emoji { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); font-size: 38px; }
+.mp-section { padding: 0 10px 10px; }
+.mp-section-title { font-size: 13px; font-weight: 700; color: #4a3f35; margin: 10px 0 8px; }
+.mp-grade-row { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 2px; }
+.mp-grade-card {
+  flex: 0 0 76px; height: 84px; border-radius: 14px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px;
+}
+.mg-emoji { font-size: 24px; }
+.mg-name { font-size: 11px; font-weight: 700; }
+
+.mp-ppt-list { display: flex; flex-direction: column; gap: 8px; }
+.mp-ppt-item {
+  background: #fff; border-radius: 12px; padding: 10px;
+  display: flex; gap: 8px; align-items: center;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+}
+.mp-ppt-thumb { width: 48px; height: 38px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+.mp-ppt-info { flex: 1; }
+.mp-ppt-title { font-size: 12px; font-weight: 700; color: #3d3328; }
+.mp-ppt-meta { font-size: 10px; color: #bbb; margin-top: 2px; }
+.mp-ppt-dl {
+  width: 28px; height: 28px; border-radius: 8px;
+  background: linear-gradient(135deg, #F4A3A3, #C4ABDB);
+  color: #fff; display: flex; align-items: center; justify-content: center;
+  font-size: 13px; flex-shrink: 0;
+}
+.mp-qr-card {
+  background: linear-gradient(135deg, rgba(244,163,163,0.1), rgba(196,171,219,0.1));
+  border-radius: 12px; padding: 12px; text-align: center;
+  border: 1.5px dashed rgba(244,163,163,0.3);
+}
+.mp-qr-title { font-size: 12px; font-weight: 700; color: #4a3f35; }
+.mp-qr-sub { font-size: 10px; color: #aaa; margin-top: 2px; }
+
+.mp-tabbar {
+  display: flex; border-top: 1px solid rgba(0,0,0,0.06);
+  background: rgba(255,253,248,0.98);
+}
+.mp-tab {
+  flex: 1; padding: 7px 0; text-align: center;
+  font-size: 9px; color: #ccc;
+  display: flex; flex-direction: column; align-items: center; gap: 1px;
+}
+.mp-tab .mt-icon { font-size: 17px; }
+.mp-tab.active { color: #c97b7b; }
+
+/* 说明文字 */
+.mp-desc { flex: 1; max-width: 360px; }
+.mp-desc h3 { font-size: 22px; font-weight: 800; color: #3d3328; margin-bottom: 12px; }
+.mp-desc p { font-size: 15px; color: #8a7a6a; line-height: 1.7; margin-bottom: 20px; }
+.mp-features { display: flex; flex-direction: column; gap: 10px; }
+.mp-feat {
+  display: flex; align-items: center; gap: 12px;
+  background: #fff; border-radius: 14px; padding: 14px 16px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+}
+.mp-feat-icon { font-size: 22px; }
+.mp-feat-text { font-size: 14px; color: #5a4f45; font-weight: 600; }
+.mp-feat-sub { font-size: 12px; color: #aaa; }
+
+@media (max-width: 768px) {
+  .mp-container { flex-direction: column; align-items: center; padding: 20px; }
+  .phone-frame { width: 280px; }
+}
