@@ -3,14 +3,50 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "framework": "vite",
-  "routes": [
+  "rewrites": [
     {
-      "src": "/api/(.*)",
-      "dest": "/api/$1"
+      "source": "/api/generate",
+      "destination": "/api/generate.js"
     },
     {
-      "src": "/(.*)",
-      "dest": "/$1"
+      "source": "/api/courses",
+      "destination": "/api/courses.js"
+    },
+    {
+      "source": "/api/stats",
+      "destination": "/api/stats.js"
+    },
+    {
+      "source": "/api/download/(.*)",
+      "destination": "/api/download.js"
+    },
+    {
+      "source": "/api/grades",
+      "destination": "/api/grades.js"
+    },
+    {
+      "source": "/api/tags",
+      "destination": "/api/tags.js"
+    },
+    {
+      "source": "/api/suggestions",
+      "destination": "/api/suggestions.js"
+    },
+    {
+      "source": "/api/share/qrcode/(.*)",
+      "destination": "/api/share.js"
+    },
+    {
+      "source": "/api/images/search",
+      "destination": "/api/images.js"
+    },
+    {
+      "source": "/api/courses/(.*)/download",
+      "destination": "/api/download-course.js"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/$1"
     }
   ]
 }
