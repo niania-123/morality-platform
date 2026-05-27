@@ -1,15 +1,15 @@
 // Vercel Serverless Function 入口
-import express from 'express'
-import cors from 'cors'
-import { generateCourseContent } from '../server/ai-generator.js'
-import { generatePPTXBuffer } from '../server/ppt-generator-buffer.js'
-import { generateTeachingPlanBuffer } from '../server/doc-generator-buffer.js'
-import { fetchSlideImages } from '../server/pixabay.js'
-import { generateShareQRCode } from '../server/qr-generator.js'
-import {
+const express = require('express')
+const cors = require('cors')
+const { generateCourseContent } = require('../server/ai-generator.js')
+const { generatePPTXBuffer } = require('../server/ppt-generator-buffer.js')
+const { generateTeachingPlanBuffer } = require('../server/doc-generator-buffer.js')
+const { fetchSlideImages } = require('../server/pixabay.js')
+const { generateShareQRCode } = require('../server/qr-generator.js')
+const {
   getCourses, addCourse, findCourse, updateCourse,
   storeFile, getFile, initStore
-} from '../server/vercel-store.js'
+} = require('../server/vercel-store.js')
 
 const app = express()
 initStore()
@@ -96,10 +96,8 @@ app.post('/api/generate', async (req, res) => {
     const pptxResult = await generatePPTXBuffer(courseContent)
     console.log(`✅ PPTX 已生成 (${Math.round(pptxResult.fileSize/1024)}KB)`)
 
-    // 存储到内存
     storeFile(pptxResult.fileName, pptxResult.buffer, 'application/vnd.openxmlformats-officedocument.presentationml.presentation')
 
-    // 生成教案
     let docResult = null
     if (options.doc !== false) {
       docResult = generateTeachingPlanBuffer({ ...courseContent, grade, title: courseContent.title || topic })
@@ -107,7 +105,6 @@ app.post('/api/generate', async (req, res) => {
       console.log(`✅ 教案已生成`)
     }
 
-    // 保存到内存数据库
     const tagLabels = { morality: '🧡 道德修养', law: '💜 法治观念', personality: '💚 健全人格', responsibility: '💛 责任意识', citizenship: '💙 公民意识' }
     const newCourse = {
       id: Date.now(),
@@ -136,7 +133,6 @@ app.post('/api/generate', async (req, res) => {
   }
 })
 
-// ===== 下载 PPTX / 教案 =====
 app.get('/api/download/:fileName', (req, res) => {
   const file = getFile(req.params.fileName)
   if (!file) return res.status(404).json({ error: '文件不存在' })
@@ -146,7 +142,6 @@ app.get('/api/download/:fileName', (req, res) => {
   res.send(file.buffer)
 })
 
-// ===== 二维码分享 =====
 app.get('/api/share/qrcode/:id', async (req, res) => {
   try {
     const course = findCourse(req.params.id)
@@ -158,12 +153,11 @@ app.get('/api/share/qrcode/:id', async (req, res) => {
   }
 })
 
-// ===== 图片搜索 =====
 app.get('/api/images/search', async (req, res) => {
   const { q } = req.query
   if (!q) return res.status(400).json({ error: '请输入搜索关键词' })
   try {
-    const { searchPixabay } = await import('../server/pixabay.js')
+    const { searchPixabay } = require('../server/pixabay.js')
     const result = await searchPixabay(q)
     if (!result) return res.json({ success: true, images: [] })
     res.json({ success: true, images: [result] })
@@ -172,7 +166,6 @@ app.get('/api/images/search', async (req, res) => {
   }
 })
 
-// ===== 课件下载计数 =====
 app.post('/api/courses/:id/download', (req, res) => {
   const course = findCourse(req.params.id)
   if (!course) return res.status(404).json({ error: '课件不存在' })
@@ -180,4 +173,4 @@ app.post('/api/courses/:id/download', (req, res) => {
   res.json({ success: true, downloads: course.downloads + 1 })
 })
 
-export default app
+module.exports = app
